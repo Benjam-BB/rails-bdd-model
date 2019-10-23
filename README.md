@@ -12,73 +12,77 @@ Réponses aux questions
    
 ```Al_s = Album.all
    Al_s.size
- => 347 ```
+ => 347 
+ ```
 
    2. Qui est l'auteur de la chanson "White Room" ?
 
  ``` white_room = Track.find_by(title: "White Room")
 white_room.artist
- => "Eric Clapton" ```
-
+ => "Eric Clapton" 
+```
    3. Quelle chanson dure exactement 188133 milliseconds ?
    
 ``` dur = Track.find_by(duration: 188133)
    dur.title
- => "Perfect" ```
+ => "Perfect" 
+ ```
 
    4. Quel groupe a sorti l'album "Use Your Illusion II" ?
    
 ``` albim = Album.find_by(title: "Use Your Illusion II")
 albim.artist
- => "Guns N Roses" ```
-
+ => "Guns N Roses"
+ ```
  ## Questions Moyennes
 
 
    1. Combien y a t'il d'albums dont le titre contient "Great" ? (indice)
 
-2.5.1 :007 > great = Album.where("title like ?", "%great%")
-2.5.1 :009 > great.size
-   (0.5ms)  SELECT COUNT(*) FROM "albums" WHERE (title like '%great%')
+```great = Album.where("title like ?", "%great%")
+great.size
  => 13
+ ```
 
    2. Supprime tous les albums dont le nom contient "music".
 
-Album.where("title like ?", "%music%").destroy_all
+```Album.where("title like ?", "%music%").destroy_all
+```
 
 3. Combien y a t'il d'albums écrits par AC/DC ?
-acdc = Album.where(artist: "AC/DC")
-2.5.1 :018 > acdc.count
-   (0.4ms)  SELECT COUNT(*) FROM "albums" WHERE "albums"."artist" = ?  [["artist", "AC/DC"]]
+
+```acdc = Album.where(artist: "AC/DC")
+acdc.count
  => 2
+ ```
 
 4. Combien de chanson durent exactement 158589 millisecondes ?
 
-    2.5.1 :020 > Track.where(duration: 158589).count
-   (0.3ms)  SELECT COUNT(*) FROM "tracks" WHERE "tracks"."duration" = ?  [["duration", 158589]]
+```Track.where(duration: 158589).count
  => 0
+ ```
 
 ## Questions Difficiles
 
 
    1. puts en console tous les titres de AC/DC.
-allbum = Album.all
-
-    2.5.1 :007 > allbum.each do |album|
-2.5.1 :008 >     if album.artist == "AC/DC"
-2.5.1 :009?>     puts album.title
-2.5.1 :010?>     end
-2.5.1 :011?>   end
-  Album Load (2.7ms)  SELECT "albums".* FROM "albums"
-For Those About To Rock We Salute You
-Let There Be Rock
+   
+```allbum = Album.all
+allbum.each do |album|
+   if album.artist == "AC/DC"
+      puts album.title
+   end
+end
+=> For Those About To Rock We Salute You
+ Let There Be Rock
+ ```
 
 2. puts en console tous les titres de l'album "Let There Be Rock".
 
-2.5.1 :018 > Track.where(album: "Let There Be Rock").each do |album|
-2.5.1 :019 >     puts album.title
-2.5.1 :020?>   end
-  Track Load (0.3ms)  SELECT "tracks".* FROM "tracks" WHERE "tracks"."album" = ?  [["album", "Let There Be Rock"]]
+```Track.where(album: "Let There Be Rock").each do |album|
+      puts album.title
+ end
+=>
 Go Down
 Dog Eat Dog
 Let There Be Rock
@@ -87,21 +91,23 @@ Problem Child
 Overdose
 Hell Aint A Bad Place To Be
 Whole Lotta Rosie
+```
 
 3. Calcule le prix total de cet album ainsi que sa durée totale.
 
-2.5.1 :014 > Track.where(album: "Let There Be Rock").map {|c| c.price}.sum
-  Track Load (0.3ms)  SELECT "tracks".* FROM "tracks" WHERE "tracks"."album" = ?  [["album", "Let There Be Rock"]]
+``` Track.where(album: "Let There Be Rock").map {|c| c.price}.sum
  => 7.92
+ ```
 
 4. Calcule le coût de l'intégralité de la discographie de "Deep Purple".
 
-2.5.1 :015 > Track.where(artist: "Deep Purple").map {|c| c.price}.sum
-  Track Load (2.3ms)  SELECT "tracks".* FROM "tracks" WHERE "tracks"."artist" = ?  [["artist", "Deep Purple"]]
+```Track.where(artist: "Deep Purple").map {|c| c.price}.sum
  => 90.09
+ ```
 
 5. Modifie (via une boucle) tous les titres de "Eric Clapton" afin qu'ils soient affichés avec "Britney Spears" en artist.
-Track.where(artist: "Eric Clapton").map {|c| c.update(artist: "Britney Spears")}
+```Track.where(artist: "Eric Clapton").map {|c| c.update(artist: "Britney Spears")}
+```
 
 
 
