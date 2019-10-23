@@ -12,25 +12,25 @@ Réponses aux questions
    
 ```Al_s = Album.all
    Al_s.size
- => 347```
+ => 347 ```
 
    2. Qui est l'auteur de la chanson "White Room" ?
 
- ```white_room = Track.find_by(title: "White Room")
+ ``` white_room = Track.find_by(title: "White Room")
 white_room.artist
- => "Eric Clapton"```
+ => "Eric Clapton" ```
 
    3. Quelle chanson dure exactement 188133 milliseconds ?
    
-```dur = Track.find_by(duration: 188133)
+``` dur = Track.find_by(duration: 188133)
    dur.title
- => "Perfect"```
+ => "Perfect" ```
 
    4. Quel groupe a sorti l'album "Use Your Illusion II" ?
    
-```albim = Album.find_by(title: "Use Your Illusion II")
+``` albim = Album.find_by(title: "Use Your Illusion II")
 albim.artist
- => "Guns N Roses"```
+ => "Guns N Roses" ```
 
  ## Questions Moyennes
 
